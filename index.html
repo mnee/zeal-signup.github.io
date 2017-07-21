@@ -54,7 +54,7 @@ body {
         <div class="row margin">
           <div class="input-field col s12">
             <i class="mdi-communication-email prefix"></i>
-            <input id="email" type="email" class="validate">
+            <input id="email" type="email" class="validate" required autocomplete="email">
             <label for="email" class="center-align">Email</label>
           </div>
         </div>
@@ -67,7 +67,7 @@ body {
         </div>
         <div class="row">
           <div class="input-field col s12">
-            <a href="register.html" class="btn waves-effect waves-light col s12" style="background-color: #13B2C5">SIGN UP</a>
+            <a href="#" class="btn waves-effect waves-light col s12" style="background-color: #13B2C5" onclick="signup()">SIGN UP</a>
           </div>
           
         </div>
@@ -80,6 +80,18 @@ body {
     Scripts
     ================================================ -->
 
+    <script type=text/javascript>
+        function handleToken(data) {
+            console.log(data.data.session.access_token);
+        }
+        function signup() {
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var prof = {"user":{"name": email, "password": password}};
+            console.log(JSON.stringify(prof));
+            $.post("https://stg-api.zeal.com/v7/public/users/parent", prof).done(handleToken);
+        }
+    </script>
   <!-- jQuery Library -->
  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <!--materialize js-->
