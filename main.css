@@ -41,3 +41,25 @@ body {
 #signup_button {
     background-color: lightgrey;
 }
+
+#header_text {
+    color: rgb(255, 255, 255);
+    height: 37px;
+    letter-spacing: 0.5px;
+    text-align: center;
+    text-decoration: none solid rgb(255, 255, 255);
+    column-rule-color: rgb(255, 255, 255);
+    perspective-origin: 261px 18.5px;
+    transform-origin: 261px 18.5px;
+    border: 0px none rgb(255, 255, 255);
+    font: normal normal 600 normal 40px / 37.7px "Whitney A", "Whitney B", Avenir, Helvetica, sans-serif;
+    margin: 0px;
+    outline: rgb(255, 255, 255) none 0px;
+}
+
+#header_logo {
+    height: 40px;
+    position: absolute;
+    left: 8px;
+    top: 8px;
+}
