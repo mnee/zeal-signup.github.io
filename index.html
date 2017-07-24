@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Zeal Signup</title>
-  <link rel="icon" href="student-zeal-logo.png">
+  <link rel="icon" href="Favicon.png">
   <!-- CORE CSS-->
   <link rel="stylesheet" href="main.css">
   
@@ -16,7 +16,7 @@
   
 </head>
 <header>
-  <img src="student-zeal-logo.png" id="header_logo">
+  <img src="student-zeal-full-logo.png" id="header_logo">
 </header>
 <body> 
   <div style="height:100px;">
@@ -37,14 +37,14 @@
           </div>
         </div>
         <div class="row margin">
-          <div class="input-field col s12" style="width: 450px;">
+          <div class="input-field col s12" style="width: 470px;">
             <i class="mdi-action-lock-outline prefix"></i>
             <input id="password" type="password" class="validate" onclick="showPassHelp()">
             <label for="password">Password</label>
           </div>
             
         </div>
-        <span id="password_help">Password must consist of at least one number and uppercase letter.</span>
+        <span id="password_help">Passwords must be at least 8 characters with at least 1 number and 1 letter.</span>
         <div class="row">
           <div class="input-field col s12">
             <a class="btn waves-effect waves-light col s12" id="signup_button" onclick="signup()">SIGN UP</a>
@@ -63,7 +63,7 @@
     <script type=text/javascript>
         function handleToken(data) {
             console.log(data.data.session.access_token);
-            window.location = "https://stg-parent.zeal.com/#!/activation/name";
+            //window.location = "https://stg-parent.zeal.com/#!/activation/name";
         }
         function signup() {
             var email = document.getElementById("email").value;
@@ -76,11 +76,11 @@
     <script type="text/javascript">
         window.setInterval(checkPassword,500);
         function checkPassword() {
-            // 8 chars, 1 Cap, 1 Num
+            // 8 chars, 1 Let, 1 Num
             var curPass = document.getElementById("password").value;
             
             var length = false;
-            var capital = false;
+            var letter = false;
             var num = false;
             var email = false;
             
@@ -95,12 +95,12 @@
             
             for (var i=0; i<curPass.length; i++) {
                 var char = curPass.charAt(i);
-                if (char >= 'A' && char <= 'Z') capital = true;
+                if ((char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z')) letter = true;
                 if (char >= '0' && char <= '9') num = true;
             }
 
             var button = document.getElementById("signup_button");
-            if (length && capital && num) {
+            if (length && letter && num) {
                 document.getElementById("password_help").style.visibility="hidden";
                 if (email) {
                     button.style.pointerEvents="all";
@@ -109,6 +109,7 @@
             } else {
                 if(document.getElementById("password").value.length >= 1) 
                     document.getElementById("password_help").style.visibility="visible";
+                
                 button.style.pointerEvents="none";
                 button.style.backgroundColor="lightgrey";
             }
