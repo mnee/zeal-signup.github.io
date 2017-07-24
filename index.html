@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-f<html lang="en">
+<html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
@@ -43,7 +43,7 @@ f<html lang="en">
         <span id="password_help">Password must consist of at least one number and uppercase letter.</span>
         <div class="row">
           <div class="input-field col s12">
-            <button href="#" class="btn waves-effect waves-light col s12" id="signup_button" style="background-color: rgb(19,178,197)" onclick="signup()" disabled>SIGN UP</button>
+            <a class="btn waves-effect waves-light col s12" id="signup_button" onclick="signup()">SIGN UP</a>
           </div>
           
         </div>
@@ -59,6 +59,7 @@ f<html lang="en">
     <script type=text/javascript>
         function handleToken(data) {
             console.log(data.data.session.access_token);
+            window.location = "https://stg-parent.zeal.com/#!/activation/name";
         }
         function signup() {
             var email = document.getElementById("email").value;
@@ -67,6 +68,8 @@ f<html lang="en">
             console.log(JSON.stringify(prof));
             $.post("https://stg-api.zeal.com/v7/public/users/parent", prof).done(handleToken);
         }
+    </script>
+    <script type="text/javascript">
         window.setInterval(checkPassword,500);
         function checkPassword() {
             // 8 chars, 1 Cap, 1 Num
@@ -95,9 +98,15 @@ f<html lang="en">
             var button = document.getElementById("signup_button");
             if (length && capital && num) {
                 document.getElementById("password_help").style.visibility="hidden";
-                if (email) button.disabled=false;
+                if (email) {
+                    button.style.pointerEvents="all";
+                    button.style.backgroundColor="rgb(19,178,197)";
+                }
             } else {
-                button.disabled=true;
+                if(document.getElementById("password").value.length >= 1) 
+                    document.getElementById("password_help").style.visibility="visible";
+                button.style.pointerEvents="none";
+                button.style.backgroundColor="lightgrey";
             }
         }
         function showPassHelp() {

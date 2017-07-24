@@ -37,3 +37,7 @@ body {
     position: relative; 
     visibility: hidden
 }
+
+#signup_button {
+    background-color: lightgrey;
+}
