@@ -1,49 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+f<html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Zeal Signup</title>
+  <link rel="icon" href="student-zeal-logo.png">
   <!-- CORE CSS-->
+  <link rel="stylesheet" href="main.css">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
     
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-<style type="text/css">
-html,
-body {
-    height: 100%;
-}
-html {
-    display: table;
-    margin: auto;
-}
-body {
-    display: table-cell;
-    vertical-align: middle;
-    background-image: url("Math_Background.png");
-}
-.margin {
-  margin: 0 !important;
-}
-    
-#background_img { 
-    width: 100vw;
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -10;
-}
-    
-</style>
   
 </head>
 
 <body>
-  <div id="login-page" class="row" styl>
+  <div id="login-page" class="row">
     <div class="col s12 z-depth-6 card-panel">
       <form class="login-form">
         <div class="row">
@@ -59,15 +33,17 @@ body {
           </div>
         </div>
         <div class="row margin">
-          <div class="input-field col s12">
+          <div class="input-field col s12" style="width: 450px;">
             <i class="mdi-action-lock-outline prefix"></i>
-            <input id="password" type="password" class="validate">
+            <input id="password" type="password" class="validate" onclick="showPassHelp()">
             <label for="password">Password</label>
           </div>
+            
         </div>
+        <span id="password_help">Password must consist of at least one number and uppercase letter.</span>
         <div class="row">
           <div class="input-field col s12">
-            <a href="#" class="btn waves-effect waves-light col s12" style="background-color: #13B2C5" onclick="signup()">SIGN UP</a>
+            <button href="#" class="btn waves-effect waves-light col s12" id="signup_button" style="background-color: rgb(19,178,197)" onclick="signup()" disabled>SIGN UP</button>
           </div>
           
         </div>
@@ -90,6 +66,42 @@ body {
             var prof = {"user":{"name": email, "password": password}};
             console.log(JSON.stringify(prof));
             $.post("https://stg-api.zeal.com/v7/public/users/parent", prof).done(handleToken);
+        }
+        window.setInterval(checkPassword,500);
+        function checkPassword() {
+            // 8 chars, 1 Cap, 1 Num
+            var curPass = document.getElementById("password").value;
+            
+            var length = false;
+            var capital = false;
+            var num = false;
+            var email = false;
+            
+            var curEmail = document.getElementById("email").value;
+            
+            for (var i=0; i<curEmail.length; i++) {
+                var char = curEmail.charAt(i);
+                if (char === '@') email = true;
+            }
+            
+            if (curPass.length >= 8) length = true;
+            
+            for (var i=0; i<curPass.length; i++) {
+                var char = curPass.charAt(i);
+                if (char >= 'A' && char <= 'Z') capital = true;
+                if (char >= '0' && char <= '9') num = true;
+            }
+
+            var button = document.getElementById("signup_button");
+            if (length && capital && num) {
+                document.getElementById("password_help").style.visibility="hidden";
+                if (email) button.disabled=false;
+            } else {
+                button.disabled=true;
+            }
+        }
+        function showPassHelp() {
+            document.getElementById("password_help").style.visibility="visible";
         }
     </script>
   <!-- jQuery Library -->
