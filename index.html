@@ -66,9 +66,7 @@
         mixpanel.init("99f35bfccecaa88d8b1da3f4cf850408");
         
         window.onmessage = function(e){
-            console.log(e.data);
             mixpanel.identify(e.data);
-            mixpanel.track("stg_signup_mixpanel_working");
         }
         
     </script>
@@ -84,6 +82,8 @@
             var prof = {"user":{"name": email, "password": password}};
             console.log(JSON.stringify(prof));
             $.post("https://stg-api.zeal.com/v7/public/users/parent", prof).done(handleToken);
+            
+            mixpanel.track("stg_signup");
         }
     </script>
     <script type="text/javascript">
@@ -127,9 +127,14 @@
                 button.style.backgroundColor="lightgrey";
             }
         }
+        
         function showPassHelp() {
             document.getElementById("password_help").style.visibility="visible";
             mixpanel.track("stg_clicked_password_enter");
+        }
+         
+        function clickEmail() {
+            mixpanel.track("stg_clicked_email_field");
         }
     </script>
   <!-- jQuery Library -->
