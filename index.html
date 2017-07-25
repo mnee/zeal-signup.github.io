@@ -66,6 +66,7 @@
         mixpanel.init("99f35bfccecaa88d8b1da3f4cf850408");
         
         window.onmessage = function(e){
+            console.log(e.data);
             mixpanel.identify(e.data);
             mixpanel.track("stg_signup_mixpanel_working");
         }
