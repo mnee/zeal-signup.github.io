@@ -23,6 +23,7 @@ body {
     background-size: cover;
     z-index: -10;
 }
+
 #dim_button {
     width: 100px;
     height: 20px;
@@ -57,9 +58,46 @@ body {
     outline: rgb(255, 255, 255) none 0px;
 }
 
+#sub_text {
+    font-size: 14px; 
+    font-family: sans-serif; 
+    font-weight: 100; 
+    line-height: 0px;
+}
+
 #header_logo {
     height: 40px;
     position: absolute;
     left: 8px;
     top: 8px;
+}
+
+#password_text {
+    width: 470px;
+}
+
+@media only screen and (max-width: 736px) {
+    #header_logo {
+        height: 30px;
+    }
+    
+    #header_text {
+        font-size: 30px;
+        width: 300px;
+        display: block;
+        margin: auto;
+        line-height: 30px;
+    }
+    
+    #password_text, #email_text, #signup_text {
+        width: 300px;
+    }
+    
+    #login-page {
+        width: 340px;
+    }
+    
+    #password_help {
+        width: 240px;
+    }
 }

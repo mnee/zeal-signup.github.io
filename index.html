@@ -21,7 +21,7 @@
 <body> 
   <div style="height:100px;">
     <p class="center login-form-text" id="header_text">Start your free trial!<br>
-        <span style="font-size: 14px; font-family: sans-serif; font-weight: 100; line-height: 10px;">See what your child can do with unlimited math tutoring</span>
+        <span id="sub_text">See what your child can do with unlimited math tutoring</span>
       </p>
   </div>
   <div id="login-page" class="row">
@@ -30,23 +30,23 @@
         <div class="row">
         </div>
         <div class="row margin">
-          <div class="input-field col s12">
+          <div class="input-field col s12" id="email_text">
             <i class="mdi-communication-email prefix"></i>
             <input id="email" type="email" class="validate" required autocomplete="email">
             <label for="email" class="center-align">Email</label>
           </div>
         </div>
         <div class="row margin">
-          <div class="input-field col s12" style="width: 470px;">
+          <div class="input-field col s12" id="password_text">
             <i class="mdi-action-lock-outline prefix"></i>
             <input id="password" type="password" class="validate" onclick="showPassHelp()">
             <label for="password">Password</label>
           </div>
             
         </div>
-        <span id="password_help">Passwords must be at least 8 characters with at least 1 number and 1 letter.</span>
+        <div id="password_help">Passwords must be at least 8 characters with at least 1 number and 1 letter.</div>
         <div class="row">
-          <div class="input-field col s12">
+          <div class="input-field col s12" id="signup_text">
             <a class="btn waves-effect waves-light col s12" id="signup_button" onclick="signup()">SIGN UP</a>
           </div>
           
