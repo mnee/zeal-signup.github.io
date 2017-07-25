@@ -61,16 +61,16 @@ function checkPassword() {
         if(document.getElementById("password").value.length >= 1) 
             document.getElementById("password_help").style.visibility="visible";
                 
-            button.style.pointerEvents="none";
-            button.style.backgroundColor="lightgrey";
-        }
+        button.style.pointerEvents="none";
+        button.style.backgroundColor="lightgrey";
     }
+}
         
 function showPassHelp() {
     document.getElementById("password_help").style.visibility="visible";
     mixpanel.track("stg_clicked_password_enter");
 }
          
-function clickEmail() {
+function clickEmailField() {
     mixpanel.track("stg_clicked_email_field");
 }
