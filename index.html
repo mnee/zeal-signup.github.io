@@ -88,6 +88,9 @@
         }
     </script>
     <script type="text/javascript">
+        var emailMix = true;
+        var passMix = true;
+        
         window.setInterval(checkPassword,500);
         function checkPassword() {
             // 8 chars, 1 Let, 1 Num
@@ -97,9 +100,6 @@
             var letter = false;
             var num = false;
             var email = false;
-            
-            var emailMix = true;
-            var passMix = true;
             
             var curEmail = document.getElementById("email").value;
             
