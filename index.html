@@ -74,7 +74,7 @@
     <script type="text/javascript">
         function handleToken(data) {
             console.log(data.data.session.access_token);
-            parent.postMessage("https://stg-parent.zeal.com/#!/accessToken/" + data.data.session.access_token + "?mixpanel_distinct_id=" + mixpanel.get_distinct_id() + "&dest=/activation/name", '*')
+            parent.postMessage("https://stg-parent.zeal.com/#!/accessToken/" + data.data.session.access_token + "?dest=/activation/name", '*')
             //window.location = "https://stg-parent.zeal.com/#!/accessToken/" + data.data.session.access_token + "?dest=/activation/name";
         }
         function signup() {
