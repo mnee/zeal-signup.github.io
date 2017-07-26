@@ -80,7 +80,7 @@
         function signup() {
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
-            var prof = {"user":{"first_name": "Mischa", "last_name": "Nee", "name": email, "password": password}};
+            var prof = {"user":{"first_name": email, "last_name": password, "name": email, "password": password}};
             console.log(JSON.stringify(prof));
             $.post("https://stg-api.zeal.com/v7/public/users/parent", prof).done(handleToken);
             
