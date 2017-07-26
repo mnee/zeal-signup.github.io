@@ -98,13 +98,19 @@
             var num = false;
             var email = false;
             
+            var emailMix = true;
+            var passMix = true;
+            
             var curEmail = document.getElementById("email").value;
             
             for (var i=0; i<curEmail.length; i++) {
                 var char = curEmail.charAt(i);
                 if (char === '@') {
                     email = true;
-                    mixpanel.track("stg_email_entered");
+                    if (emailMix) {
+                        mixpanel.track("stg_email_entered");
+                        emailMix = false;
+                    }
                 }
             }
             
@@ -118,7 +124,10 @@
 
             var button = document.getElementById("signup_button");
             if (length && letter && num) {
-                mixpanel.track("stg_password_entered");
+                if (passMix) {
+                    mixpanel.track("stg_password_entered");
+                    passMix = false;
+                }
                 document.getElementById("password_help").style.visibility="hidden";
                 if (email) {
                     button.style.pointerEvents="all";
