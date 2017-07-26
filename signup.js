@@ -11,7 +11,7 @@ window.onmessage = function(e){
         
 function handleToken(data) {
     console.log(data.data.session.access_token);
-    window.top.location.href = "https://stg-parent.zeal.com/#!/activation/name";
+    window.top.location.href = "https://stg-parent.zeal.com/#!/activation/name/?accessToken=" + data.data.session.access_token;
 }
         
 function signup() {
