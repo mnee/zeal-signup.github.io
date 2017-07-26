@@ -102,7 +102,10 @@
             
             for (var i=0; i<curEmail.length; i++) {
                 var char = curEmail.charAt(i);
-                if (char === '@') email = true;
+                if (char === '@') {
+                    email = true;
+                    mixpanel.track("stg_email_entered");
+                }
             }
             
             if (curPass.length >= 8) length = true;
@@ -115,6 +118,7 @@
 
             var button = document.getElementById("signup_button");
             if (length && letter && num) {
+                mixpanel.track("stg_password_entered");
                 document.getElementById("password_help").style.visibility="hidden";
                 if (email) {
                     button.style.pointerEvents="all";
@@ -131,11 +135,6 @@
         
         function showPassHelp() {
             document.getElementById("password_help").style.visibility="visible";
-            mixpanel.track("stg_clicked_password_field");
-        }
-         
-        function clickEmail() {
-            mixpanel.track("stg_clicked_email_field");
         }
         
         window.onmessage = function(e){
