@@ -77,6 +77,11 @@
     <script type="text/javascript">
         function handleToken(data) {
             console.log(data.data.session.access_token);
+            mixpanel.track("landing_signup", {
+                "$email": email,
+                "role": parent,
+                "username": email
+            });
             parent.postMessage("https://parent.zeal.com/#!/accessToken/" + data.data.session.access_token + "?dest=/activation/name", '*')
             //window.location = "https://parent.zeal.com/#!/accessToken/" + data.data.session.access_token + "?dest=/activation/name";
         }
@@ -86,12 +91,6 @@
             var prof = {"user":{"first_name": email, "last_name": "Tutoring", "name": email, "password": password}};
             console.log(JSON.stringify(prof));
             $.post("https://api.zeal.com/v7/public/users/parent", prof).done(handleToken);
-            
-            mixpanel.track("landing_signup", {
-                "$email": email,
-                "role": parent,
-                "username": email
-            });
         }
     </script>
     <script type="text/javascript">
