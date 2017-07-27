@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <script src="https://cdn.optimizely.com/js/8484452057.js"></script>
+    
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -85,7 +87,11 @@
             console.log(JSON.stringify(prof));
             $.post("https://api.zeal.com/v7/public/users/parent", prof).done(handleToken);
             
-            mixpanel.track("landing_signup");
+            mixpanel.track("landing_signup", {
+                "$email": email,
+                "role": parent,
+                "username": email
+            });
         }
     </script>
     <script type="text/javascript">
