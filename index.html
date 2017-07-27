@@ -77,11 +77,7 @@
     <script type="text/javascript">
         function handleToken(data) {
             console.log(data.data.session.access_token);
-            /*mixpanel.track("landing_signup", {
-                "$email": email,
-                "role": parent,
-                "username": email
-            });*/
+            mixpanel.track("landing_signup");
             parent.postMessage("https://parent.zeal.com/#!/accessToken/" + data.data.session.access_token + "?dest=/activation/name", '*')
             //window.location = "https://parent.zeal.com/#!/accessToken/" + data.data.session.access_token + "?dest=/activation/name";
         }
@@ -152,9 +148,9 @@
             document.getElementById("password_help").style.visibility="visible";
         }
         
-        /*window.onmessage = function(e){
+        window.onmessage = function(e){
             mixpanel.identify(e.data);
-        }*/
+        }
     </script>
   <!-- jQuery Library -->
  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
