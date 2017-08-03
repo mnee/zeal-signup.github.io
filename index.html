@@ -77,7 +77,6 @@
     <script type="text/javascript">
         function handleToken(data) {
             mixpanel.track("landing_signup");
-            console.log(data.data.session.access_token);
             parent.postMessage("https://parent.zeal.com/#!/accessToken/" + data.data.session.access_token + "?dest=/activation/name", '*')
             //window.location = "https://parent.zeal.com/#!/accessToken/" + data.data.session.access_token + "?dest=/activation/name";
         }
@@ -86,7 +85,6 @@
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
             var prof = {user:{"first_name": email, "last_name": "Tutoring", "name": email, "password": password}, temp_id: mixpanel.get_distinct_id()};
-            console.log(JSON.stringify(prof));
             $.post("https://api.zeal.com/v7/public/users/parent", prof).done(handleToken);
         }
     </script>
@@ -96,7 +94,6 @@
         
         window.setInterval(checkPassword,500);
         function checkPassword() {
-            console.log(mixpanel.get_distinct_id());
             // 8 chars, 1 Let, 1 Num
             var curPass = document.getElementById("password").value;
             
