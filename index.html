@@ -87,7 +87,7 @@
             var password = document.getElementById("password").value;
             var prof = {user:{"first_name": email, "last_name": "Tutoring", "name": email, "password": password}, temp_id: mixpanel.get_distinct_id()};
             console.log(JSON.stringify(prof));
-            $.post("https://stg-api.zeal.com/v7/public/users/parent", prof).done(handleToken);
+            $.post("https://api.zeal.com/v7/public/users/parent", prof).done(handleToken);
         }
     </script>
     <script type="text/javascript">
