@@ -85,9 +85,9 @@
             goog_report_conversion();
             var email = document.getElementById("email").value;
             var password = document.getElementById("password").value;
-            var prof = {"user":{"first_name": email, "last_name": "Tutoring", "name": email, "password": password}};
+            var prof = {user:{"first_name": email, "last_name": "Tutoring", "name": email, "password": password}, temp_id: mixpanel.get_distinct_id()};
             console.log(JSON.stringify(prof));
-            $.post("https://api.zeal.com/v7/public/users/parent", prof).done(handleToken);
+            $.post("https://stg-api.zeal.com/v7/public/users/parent", prof).done(handleToken);
         }
     </script>
     <script type="text/javascript">
@@ -96,6 +96,7 @@
         
         window.setInterval(checkPassword,500);
         function checkPassword() {
+            console.log(mixpanel.get_distinct_id());
             // 8 chars, 1 Let, 1 Num
             var curPass = document.getElementById("password").value;
             
@@ -159,6 +160,7 @@
         window.onmessage = function(e){
             mixpanel.identify(e.data);
         }
+        
     </script>
   <!-- jQuery Library -->
  <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
