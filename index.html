@@ -105,25 +105,32 @@
             
             var curEmail = document.getElementById("email").value;
             
-            for (var i=0; i<curEmail.length; i++) {
-                var char = curEmail.charAt(i);
-                if (char === '@') {
-                    email = true;
-                    if (emailMix) {
-                        mixpanel.track("email_entered");
-                        emailMix = false;
-                    }
+            if ((/^[\-0-9a-zA-Z.+_]+@[\-0-9a-zA-Z.+_]+\.[a-zA-Z]{2,4}/).test(curEmail)) {
+                emailBool = true;
+                if (emailMix) {
+                    mixpanel.track("email_entered");
+                    emailMix = false;
                 }
+            } else {
+                emailBool = false;
             }
             
-            if (curPass.length >= 8) length = true;
+            if (curPass.length >= 8) {
+                length = true;
+            } else {
+                length = false;
+            }
             
             for (var i=0; i<curPass.length; i++) {
                 var char = curPass.charAt(i);
-                if ((char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z')) letter = true;
-                if (char >= '0' && char <= '9') num = true;
+                if ((char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z')) {
+                    letter = true;
+                }
+                if (char >= '0' && char <= '9') {
+                    num = true;
+                }
             }
-
+            
             var button = document.getElementById("signup_button");
             if (length && letter && num) {
                 if (passMix) {
@@ -131,7 +138,7 @@
                     passMix = false;
                 }
                 document.getElementById("password_help").style.visibility="hidden";
-                if (email) {
+                if (emailBool) {
                     button.style.pointerEvents="all";
                     button.style.backgroundColor="rgb(19,178,197)";
                 }
